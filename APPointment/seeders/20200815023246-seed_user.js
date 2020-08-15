@@ -9,7 +9,7 @@ module.exports = {
     await queryInterface.bulkInsert('users', [
       {
         'id': 1,
-        'name': faker.name(),
+        'name': faker.internet.userName(),
         'email': faker.internet.email(),
         'password': bcrypt.hashSync('123456', 10),
         'admin': false,
@@ -18,7 +18,7 @@ module.exports = {
       },
       {
         'id': 2,
-        'name': faker.name(),
+        'name': faker.internet.userName(),
         'email': faker.internet.email(),
         'password': bcrypt.hashSync('123456', 10),
         'admin': false,
@@ -27,7 +27,7 @@ module.exports = {
       },
       {
         'id': 3,
-        'name': faker.name(),
+        'name': faker.internet.userName(),
         'email': faker.internet.email(),
         'password': bcrypt.hashSync('123456', 10),
         'admin': false,
@@ -36,7 +36,7 @@ module.exports = {
       },
       {
         'id': 4,
-        'name': faker.name(),
+        'name': faker.internet.userName(),
         'email': faker.internet.email(),
         'password': bcrypt.hashSync('123456', 10),
         'admin': false,
@@ -45,7 +45,7 @@ module.exports = {
       },
       {
         'id': 5,
-        'name': faker.name(),
+        'name': faker.internet.userName(),
         'email': 'admin@admin.com',
         'password': bcrypt.hashSync('admin', 10),
         'admin': true,

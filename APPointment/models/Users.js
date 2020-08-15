@@ -30,18 +30,20 @@ module.exports = function(sequelize, DataTypes) {
       defaultValue: false,
       comment: "null"
     },
-    'createdat': {
+    createdAt: {
+      field: 'createdat',
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
+      comment: "null",
+    },
+    updatedAt: {
+      field: 'updatedat',
       type: DataTypes.DATE,
       allowNull: false,
       defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
       comment: "null"
     },
-    'updatedat': {
-      type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
-      comment: "null"
-    }
   }, {
     tableName: 'users'
   });
