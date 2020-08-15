@@ -31,7 +31,20 @@ module.exports = {
     },
 
     login: async (req, res) => {
-        
+        try {
+            const { password, email } = req.body;
+            const result = await User.findOne({ where: { email } });
+            if (!result) {
+                return res.status(401).json({ error: true, messages: [{ text: 'Email ou senha inválido' }] });
+            }
+            if (!bcrypt.compareSync(password, result.password)) {
+                return res.status(401).json({ error: true, messages: [{ text: 'Email ou senha inválido' }] });
+            }
+            return res.status(200).json({result});
+        } catch (error) {
+            console.error(error);
+            return res.status(501).json({ error:error.message });
+        }
     }
 
 };
