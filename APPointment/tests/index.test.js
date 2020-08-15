@@ -6,13 +6,13 @@ const request = supertest(app);
 afterAll(async() => await User.sequelize.close());
 
 test('O status da resposta deve ser 200 ', async () => {
-    const response = await request.get('/');
+    const response = await request.get('/api/');
     const status = response.status;
     expect(status).toBe(200);
 });
 
 test('O primeiro usuário deve ter id 1 ', async () => {
-    const response = await request.get('/');
+    const response = await request.get('/api/');
     let data = JSON.parse(response.text);
     expect(data.users[0].id).toBe(1);
 });
