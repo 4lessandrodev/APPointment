@@ -33,7 +33,7 @@ module.exports = {
     login: async (req, res) => {
         try {
             const { password, email } = req.body;
-            const result = await User.findOne({ where: { email } });
+            const result = await User.scope('withPassword').findOne({ where: { email } });
             if (!result) {
                 return res.status(401).json({ error: true, messages: [{ text: 'Email ou senha inválido' }] });
             }
