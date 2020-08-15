@@ -6,10 +6,10 @@ module.exports = {
             const conectedUser = await User.findByPk(1, {
                 attributes:['admin', 'id']
             });
-            req.user = { user_id: conectedUser.id, admin };
             if (!conectedUser) {
                 throw new Error('Usuário não conectado');
             }
+            req.user = { user_id: conectedUser.id, admin:conectedUser.admin };
             next();
         } catch (error) {
             console.error(error);

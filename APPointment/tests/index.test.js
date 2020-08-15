@@ -3,7 +3,7 @@ const app = require('../app');
 const supertest = require('supertest');
 const request = supertest(app);
 
-afterAll(async() => await User.sequelize.close());
+afterAll(async () => await User.sequelize.close());
 
 test('O status da resposta deve ser 200 ', async () => {
     const response = await request.get('/api/');

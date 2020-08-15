@@ -56,10 +56,12 @@ module.exports = function(sequelize, DataTypes) {
       foreignKey: 'users_id'
     });
 
-    User.belongsTo(models.Task, {
-      as: 'users_task',
-      foreignKey:'id'
-    });
+    User.associate = (models) => {
+      User.belongsTo(models.Task, {
+        as: 'users_task',
+        foreignKey: 'users_id'
+      });
+    };
 
   };
   
