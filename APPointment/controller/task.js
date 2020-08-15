@@ -56,7 +56,7 @@ module.exports = {
                 });
             }
             
-            return res.status(200).json(tasks);
+            return res.status(200).json({ tasks });
             
         } catch (error) {
             console.error(error);
@@ -69,7 +69,7 @@ module.exports = {
             const { startat, description } = req.body;
             const { user_id } = req.user;
             const result = await Task.create({ startat, description, users_id: user_id });
-            return res.status(200).json(result);
+            return res.status(200).json({ result });
         } catch (error) {
             console.error(error);
             return res.status(501).json({ error:error.message });
@@ -97,7 +97,7 @@ module.exports = {
             task.doneat = doneat;
             const result = await task.save();
             
-            return res.status(200).json(result);
+            return res.status(200).json({ result });
             
         } catch (error) {
             console.error(error);
@@ -120,7 +120,7 @@ module.exports = {
             }
             
             const result = await task.destroy();
-            return res.status(200).json(result);
+            return res.status(200).json({ result });
             
         } catch (error) {
             console.error(error);
@@ -139,7 +139,11 @@ module.exports = {
                 }
             });
 
-            return res.status(200).json(task);
+            if (!task) {
+                return res.status(401).json({ error:'Não encontrada ou sem acesso à tarefa' }); 
+            }
+
+            return res.status(200).json({ task });
 
         } catch (error) {
             console.error(error);

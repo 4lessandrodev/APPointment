@@ -13,6 +13,12 @@ test('O status da resposta deve ser 200 ', async () => {
 
 test('O primeiro usuário deve ter id 1 ', async () => {
     const response = await request.get('/api/');
-    let data = JSON.parse(response.text);
-    expect(data.users[0].id).toBe(1);
+    let { users } = response.body;
+    expect(users[0].id).toBe(1);
+});
+
+test('A lista de usuário não pode conter senha ', async () => {
+    const response = await request.get('/api/');
+    let { users } = response.body;
+    expect(users[0].password).toBeUndefined();
 });

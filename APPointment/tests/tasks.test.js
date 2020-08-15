@@ -13,6 +13,18 @@ test('Deve acessar uma rota autenticada', async () => {
 
 test('Deve listar apenas as tarefas do usuário 1 ', async () => {
     const response = await request.get('/api/tasks');
-    const tasks = JSON.parse(response.text);
+    const { tasks } = response.body;
     expect(tasks.length).toBe(5);
+});
+
+test('O usuário comun só pode listar suas próprias tarefas ', async () => {
+    const response = await request.get('/api/tasks/2');
+    const status = response.status;
+    expect(status).toBe(401);
+});
+
+test('Deve exibir apenas a tarefa com o id 1 ', async () => {
+    const response = await request.get('/api/tasks/1');
+    const { task } = response.body;
+    expect(task.id).toBe(1);
 });
