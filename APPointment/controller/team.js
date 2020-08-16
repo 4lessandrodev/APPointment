@@ -48,6 +48,12 @@ module.exports = {
 
     store: async (req, res) => {
         try {
+
+            const errors = validationResult(req);
+            if (!errors.isEmpty()) {
+                return res.status(422).json({ errors: errors.array() });
+            }
+
             const { user } = req;
 
             if (!user.admin) {
@@ -67,6 +73,11 @@ module.exports = {
     update: async (req, res) => {
         try {
             
+            const errors = validationResult(req);
+            if (!errors.isEmpty()) {
+                return res.status(422).json({ errors: errors.array() });
+            }
+
             const { description } = req.body;
             const { id } = req.params;
             const team = await Team.findOne({
@@ -90,6 +101,12 @@ module.exports = {
 
     delete: async (req, res) => {
         try {
+
+            const errors = validationResult(req);
+            if (!errors.isEmpty()) {
+                return res.status(422).json({ errors: errors.array() });
+            }
+
             const { id } = req.params;
             const team = await Team.findOne({
                 where: {
@@ -110,6 +127,12 @@ module.exports = {
 
     show: async (req, res) => {
         try {
+
+            const errors = validationResult(req);
+            if (!errors.isEmpty()) {
+                return res.status(422).json({ errors: errors.array() });
+            }
+
             let team;
             const { id } = req.params;
             if (user.admin) {

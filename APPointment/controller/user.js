@@ -33,6 +33,12 @@ module.exports = {
 
     update: async (req, res) => {
         try {
+
+            const errors = validationResult(req);
+            if (!errors.isEmpty()) {
+                return res.status(422).json({ errors: errors.array() });
+            }
+
             const { user } = req;
             let { name = '', email = '', password = '', admin = false } = req.body;
 
@@ -66,6 +72,7 @@ module.exports = {
 
     show: async (req, res) => {
         try {
+
             const { email = '', id = '' } = req.query;
             if (email !== '') {
 
