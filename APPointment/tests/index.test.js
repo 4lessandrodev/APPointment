@@ -41,14 +41,3 @@ test('O status da resposta deve ser 401 senha inválida ', async () => {
     expect(status).toBe(401);
 });
 
-test('O primeiro usuário deve ter id 1 ', async () => {
-    const response = await request.get('/api/');
-    let { users } = response.body;
-    expect(users[0].id).toBe(1);
-});
-
-test('A lista de usuário não pode conter senha ', async () => {
-    const response = await request.get('/api/');
-    let { users } = response.body;
-    expect(users[0].password).toBeUndefined();
-});
