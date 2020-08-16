@@ -131,7 +131,7 @@ module.exports = {
         try {
             const { id } = req.params;
             const { user } = req;
-            let restricao = user.user_id;
+            let restriction = user.user_id;
             let ids;
             if (user.admin) {
                 const teams = await User.findAll({
@@ -149,13 +149,20 @@ module.exports = {
                 });
                 
                 ids = teams.map(user => user.id);
-                restricao = { [Op.in]: ids };
+                restriction = { [Op.in]: ids };
             }
 
             const task = await Task.findOne({
+                include: [
+                    {
+                        model: User,
+                        as: 'users_task',
+                        required:true
+                    }
+                ],
                 where: {
                     id,
-                    users_id: restricao,
+                    users_id: restriction,
                 }
             });
             
