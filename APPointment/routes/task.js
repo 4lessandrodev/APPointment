@@ -1,13 +1,14 @@
 var express = require('express');
 const controller = require('../controller/task');
+const { validateParam, validateTask } = require('../middleware/validateFields');
 var router = express.Router();
 
 router.get('/', controller.index);
 
-router.get('/:id', controller.show);
+router.get('/:id', validateParam(), controller.show);
 
-router.post('/', controller.store);
+router.post('/', validateTask(), controller.store);
 
-router.delete('/:id', controller.delete);
+router.delete('/:id', validateParam(), controller.delete);
 
 module.exports = router;

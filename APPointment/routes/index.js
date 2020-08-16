@@ -1,12 +1,14 @@
-var express = require('express');
+const express = require('express');
 const controller = require('../controller/index');
-var router = express.Router();
+const router = express.Router();
+const { validateUser } = require('../middleware/validateFields');
+
 
 /* GET home page. */
 router.get('/', controller.index);
 
-router.post('/register', controller.register);
+router.post('/register', validateUser(), controller.register);
 
-router.post('/login', controller.login);
+router.post('/login', validateUser(), controller.login);
 
 module.exports = router;

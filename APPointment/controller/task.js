@@ -1,4 +1,5 @@
 const { Task, User, Team } = require('../models');
+const { validationResult } = require('express-validator');
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 
@@ -65,6 +66,12 @@ module.exports = {
     
     store: async (req, res) => {
         try {
+
+            const errors = validationResult(req);
+            if (!errors.isEmpty()) {
+                return res.status(422).json({ errors: errors.array() });
+            }
+
             const { startat, description } = req.body;
             const { user_id } = req.user;
             const result = await Task.create({ startat, description, users_id: user_id });
@@ -77,6 +84,12 @@ module.exports = {
     
     update: async (req, res) => {
         try {
+
+            const errors = validationResult(req);
+            if (!errors.isEmpty()) {
+                return res.status(422).json({ errors: errors.array() });
+            }
+
             const { startat, description, done, doneat } = req.body;
             const { id } = req.params;
             const { user_id } = req.user;
@@ -106,6 +119,12 @@ module.exports = {
     
     delete: async (req, res) => {
         try {
+
+            const errors = validationResult(req);
+            if (!errors.isEmpty()) {
+                return res.status(422).json({ errors: errors.array() });
+            }
+
             const { id } = req.params;
             const { user_id } = req.user;
             
@@ -129,6 +148,12 @@ module.exports = {
     
     show: async (req, res) => {
         try {
+
+            const errors = validationResult(req);
+            if (!errors.isEmpty()) {
+                return res.status(422).json({ errors: errors.array() });
+            }
+
             const { id } = req.params;
             const { user } = req;
             let restriction = user.user_id;
