@@ -2,6 +2,7 @@ const { User } = require('../models');
 const app = require('../app');
 const supertest = require('supertest');
 const request = supertest(app);
+const faker = require('faker');
 
 let TOKEN = '';
 
@@ -52,3 +53,20 @@ test('Usuário sem token não pode ter acesso a usuários ', async () => {
     const status = response.status;
     expect(status).toBe(401);
 });
+
+test('Deve pedir um email e uma senha para se cadastrar ', async () => {
+    const response = await request.post('/api/register');
+    const status = response.status;
+    expect(status).toBe(422);
+});
+
+test('Deve pedir uma senha para se cadastrar ', async () => {
+    const response = await request.post('/api/register')
+    .send({email:});
+    const status = response.status;
+    expect(status).toBe(422);
+});
+
+
+
+
