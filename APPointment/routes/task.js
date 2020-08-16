@@ -11,6 +11,6 @@ router.post('/', validateTask(), controller.store);
 
 router.delete('/:id', validateParam(), controller.delete);
 
-router.put('/:id', validateParam(), validateTask(), controller.delete);
+router.put('/:id', validateParam(), validateTask(), controller.update);
 
 module.exports = router;
