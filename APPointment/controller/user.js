@@ -1,4 +1,4 @@
-const { User, Team, team_has_users } = require('../models');
+const { User, Team, Team_has_users } = require('../models');
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 const bcrypt = require('bcrypt');
@@ -8,25 +8,38 @@ module.exports = {
     index: async (req, res) => {
         try {
             const { user } = req;
-            const teams = await team_has_users.findAll({
-                where:{users_id:user.user_id}
+
+            const teams = await Team.findAll({
+                attributes:['id'],
+                where:{manager:user.user_id}
             });
-            const teamsIds = teams.map(team => team.teams_id);
+
+            const teamsIds = teams.map(team => team.id);
+
+            const usersTeam = await Team_has_users.findAll({
+                attributes:['users_id', 'teams_id'],
+                where:{
+                        teams_id:{[Op.in]:teamsIds}
+                    }
+            });
+
+            const usersIds = usersTeam.map(user => user.users_id);
+
             const users = await User.findAll({
                 include: [{
                     model: Team,
                     as: 'team_users',
                     required: true,
-                    where: {
-                        id:{[Op.in]:teamsIds}
+                }],
+                where: {
+                        id:{[Op.in]:usersIds}
                     }
-                }]
             });
 
             res.status(200).json({ users });
 
         } catch (error) {
-            console.error(error);
+            console.error(error.message);
             return res.status(501).json({ error:error.message });   
         }
     },
@@ -65,7 +78,7 @@ module.exports = {
             res.status(200).json({ result });
 
         } catch (error) {
-            console.error(error);
+            console.error(error.message);
             return res.status(501).json({ error:error.message });   
         }
     },
@@ -92,7 +105,7 @@ module.exports = {
                 
             }
         } catch (error) {
-            console.error(error);
+            console.error(error.message);
             return res.status(501).json({ error:error.message });   
         }
     },
@@ -112,7 +125,7 @@ module.exports = {
             res.status(200).json({ result });
 
         } catch (error) {
-            console.error(error);
+            console.error(error.message);
             return res.status(501).json({ error:error.message });   
         }
     },

@@ -32,8 +32,8 @@ module.exports = {
             next();
 
         } catch (error) {
-            console.error(error);
-            return res.status(501).json({ error:error.message });
+            console.error(error.message);
+            return res.status(401).json({ error:error.message });
         }
     },
 

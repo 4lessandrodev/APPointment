@@ -41,3 +41,14 @@ test('O status da resposta deve ser 401 senha inválida ', async () => {
     expect(status).toBe(401);
 });
 
+test('Usuário sem token não pode ter acesso a tarefas ', async () => {
+    const response = await request.get('/api/tasks');
+    const status = response.status;
+    expect(status).toBe(401);
+});
+
+test('Usuário sem token não pode ter acesso a usuários ', async () => {
+    const response = await request.get('/api/usuarios');
+    const status = response.status;
+    expect(status).toBe(401);
+});

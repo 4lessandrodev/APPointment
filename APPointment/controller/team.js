@@ -41,7 +41,7 @@ module.exports = {
             return res.status(200).json({ teams });
 
         } catch (error) {
-            console.error(error);
+            console.error(error.message);
             return res.status(501).json({ error:error.message }); 
         }
     },
@@ -65,7 +65,7 @@ module.exports = {
             return res.status(200).json({ result });
 
         } catch (error) {
-            console.error(error);
+            console.error(error.message);
             return res.status(501).json({ error:error.message });
         }
     },
@@ -94,7 +94,7 @@ module.exports = {
             return res.status(200).json({ result });
 
         } catch (error) {
-            console.error(error);
+            console.error(error.message);
             return res.status(501).json({ error:error.message });
         }
     },
@@ -120,7 +120,7 @@ module.exports = {
             const result = await team.destroy();
             return res.status(200).json({ result });
         } catch (error) {
-            console.error(error);
+            console.error(error.message);
             return res.status(501).json({ error:error.message });
         }
     },
@@ -174,7 +174,7 @@ module.exports = {
             return res.status(200).json({ team });
 
         } catch (error) {
-            console.error(error);
+            console.error(error.message);
             return res.status(501).json({ error:error.message });
         }
     }

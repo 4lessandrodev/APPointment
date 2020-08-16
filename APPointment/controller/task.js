@@ -59,7 +59,7 @@ module.exports = {
             return res.status(200).json({ tasks });
             
         } catch (error) {
-            console.error(error);
+          console.error(error.message);
             return res.status(501).json({ error:error.message });
         }
     },
@@ -77,7 +77,7 @@ module.exports = {
             const result = await Task.create({ startat, description, users_id: user_id });
             return res.status(200).json({ result });
         } catch (error) {
-            console.error(error);
+            console.error(error.message);
             return res.status(501).json({ error:error.message });
         }
     },
@@ -112,7 +112,7 @@ module.exports = {
             return res.status(200).json({ result });
             
         } catch (error) {
-            console.error(error);
+           console.error(error.message);
             return res.status(501).json({ error:error.message });
         }
     },
@@ -141,7 +141,7 @@ module.exports = {
             return res.status(200).json({ result });
             
         } catch (error) {
-            console.error(error);
+           console.error(error.message);
             return res.status(501).json({ error:error.message });
         }
     },
@@ -198,7 +198,7 @@ module.exports = {
             return res.status(200).json({ task });
             
         } catch (error) {
-            console.error(error);
+            console.error(error.message);
             return res.status(501).json({ error:error.message }); 
         }
     }

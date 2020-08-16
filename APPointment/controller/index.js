@@ -10,7 +10,7 @@ module.exports = {
             const users = await User.findAll();
             res.status(200).json({ users });   
         } catch (error) {
-            console.error(error);
+           console.error(error.message);
             return res.status(501).json({ error:error.message });
         }
     },
@@ -37,7 +37,7 @@ module.exports = {
             
             return res.status(200).json({ user, token });
         } catch (error) {
-            console.error(error);
+            console.error(error.message);
             return res.status(501).json({ error:error.message });
         }
     },
@@ -71,7 +71,7 @@ module.exports = {
             return res.status(200).json({ token });
             
         } catch (error) {
-            console.error(error);
+            console.error(error.message);
             return res.status(501).json({ error:error.message });
         }
     }
