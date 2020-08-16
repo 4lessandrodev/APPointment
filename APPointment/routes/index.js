@@ -4,7 +4,6 @@ const router = express.Router();
 const { validateUser } = require('../middleware/validateFields');
 
 
-/* GET home page. */
 router.get('/', controller.index);
 
 router.post('/register', validateUser(), controller.register);
