@@ -34,7 +34,6 @@ module.exports = {
     update: async (req, res) => {
         try {
             const { user } = req;
-            const { id } = req.params;
             let { name = '', email = '', password = '', admin = false } = req.body;
 
             password = (password != '') ? bcrypt.hashSync(password, 10) : '';
@@ -45,7 +44,7 @@ module.exports = {
             if (emailAlreadyExist) {
                 return res.status(501).json({ error:'Este email já está em uso' }); 
             }
-            const userToUpdate = await User.findByPk(id);
+            const userToUpdate = await User.findByPk(user.user_id);
 
             if (!userToUpdate) {
                 return res.status(501).json({ error:'Usuário não encontrado' }); 
@@ -67,7 +66,7 @@ module.exports = {
 
     show: async (req, res) => {
         try {
-            const { email = '', id='' } = req.query;
+            const { email = '', id = '' } = req.query;
             if (email !== '') {
 
                 const user = await User.findOne({
