@@ -6,41 +6,40 @@ module.exports = {
     
     index: async (req, res) => {
         try {
-            
             let tasks;
-            const { user_id } = req.user;
-            const conectedUser = await User.findByPk(user_id);
+            const { user } = req;
             
-            if (conectedUser.admin) {
-                const teams = await Team.findAll({
+            
+            if (user.admin) {
+                const teams = await User.findAll({
                     include: [
                         {
-                            model: User,
+                            model: Team,
                             as: 'team_users',
-                            required:true
+                            required: true,
+                            where: {
+                                manager:user.user_id
+                            }
                         }
                     ],
-                    where: {
-                        manager:user_id
-                    }
+                    
                 });
-
-                const users = teams.map(team => team.team_users);
-                const ids = [...users];
-
+                
+                const usersIds = teams.map(user => user.id);
+                
                 tasks = await Task.findAll({
                     include: [
                         {
                             model: User,
-                            as: 'users',
+                            as: 'users_task',
                             required:true
                         }
                     ],
                     where: {
-                        users_id:{[Op.in]:ids}
+                        users_id:{[Op.in]:usersIds}
                     }
                 });
-             
+                
             } else {
                 tasks = await Task.findAll({
                     include: [
@@ -51,7 +50,7 @@ module.exports = {
                         }
                     ],
                     where: {
-                        users_id: user_id
+                        users_id: user.user_id
                     }
                 });
             }
@@ -127,24 +126,45 @@ module.exports = {
             return res.status(501).json({ error:error.message });
         }
     },
-
+    
     show: async (req, res) => {
         try {
             const { id } = req.params;
-            const { user_id } = req.user;
+            const { user } = req;
+            let restricao = user.user_id;
+            let ids;
+            if (user.admin) {
+                const teams = await User.findAll({
+                    include: [
+                        {
+                            model: Team,
+                            as: 'team_users',
+                            required: true,
+                            where: {
+                                manager: user.user_id
+                            }
+                        }
+                    ],
+                    
+                });
+                
+                ids = teams.map(user => user.id);
+                restricao = { [Op.in]: ids };
+            }
+
             const task = await Task.findOne({
                 where: {
                     id,
-                    users_id: user_id,
+                    users_id: restricao,
                 }
             });
-
+            
             if (!task) {
                 return res.status(401).json({ error:'Não encontrada ou sem acesso à tarefa' }); 
             }
-
+            
             return res.status(200).json({ task });
-
+            
         } catch (error) {
             console.error(error);
             return res.status(501).json({ error:error.message }); 

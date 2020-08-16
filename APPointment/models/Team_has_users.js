@@ -35,8 +35,12 @@ module.exports = function(sequelize, DataTypes) {
       comment: "null"
     },
   }, {
-    tableName: 'team_has_users'
+    tableName: 'team_has_users',
+    timestamps:false,
+    defaultScope: {
+      attributes:{ include:['teams_id', 'users_id'] }
+    },
   });
-
+  
   return Team_has_users;
 };

@@ -47,9 +47,9 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     tableName: 'users',
     defaultScope: {
-      attributes:{exclude:['password']}
+      attributes:{ exclude:['password'] }
     },
-    escopes: {
+    scopes: {
       withPassword: {
         attributes:{}
       }
@@ -61,15 +61,9 @@ module.exports = function(sequelize, DataTypes) {
     User.belongsToMany(models.Team, {
       through: 'team_has_users',
       as: 'team_users',
-      foreignKey: 'users_id'
+      foreignKey: 'users_id',
+      timestamps: false 
     });
-    
-    User.associate = (models) => {
-      User.belongsTo(models.Task, {
-        as: 'users_task',
-        foreignKey: 'users_id'
-      });
-    };
     
   };
   
