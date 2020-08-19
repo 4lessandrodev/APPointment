@@ -7,7 +7,14 @@ module.exports = {
     
     index: async (req, res) => {
         try {
-            const users = await User.findAll();
+            let { limit = 7, page = 1 } = req.query;
+            limit = parseInt(limit);
+            page = parseInt(page) - 1;
+            const users = await User.findAll({
+                attributes: ['name'],
+                limt,
+                offset:limit*page
+            });
             res.status(200).json({ users });   
         } catch (error) {
            console.error(error.message);
