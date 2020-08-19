@@ -5,7 +5,7 @@ module.exports = {
         return (
             [
                 check('email', 'Informe um email válido').isEmail(),
-                check('password', 'Informe uma senha').isLength({ min: 1, max: 10 }),
+                check('password', 'Informe uma senha de até 20 caracter').isLength({ min: 1, max: 50 }),
                 check('email', 'Email deve ser menor que 80 caracter').isLength({ max: 80 })
             ]
         );
