@@ -29,12 +29,12 @@
 
 - `git clone https://github.com/ALESSANDROLMENEZES/APPointment.git`
 - `cd APPointment`
+- `npm install`
 - `Crie um arquivo .env `
 - `Configure o arquivo .env com seu usuário e senha de conexão do banco de dados`
 - `npx sequelize db:create`
 - `npx sequelize db:migrate`
 - `npx sequelize db:seed:all`
-- `npm install`
 - `npm start`
 - `Primeiro acesse a rota cadastro para fazer seu cadastro`
 - `Você receberá um token, utilize-o para acessar as demais rotas`
