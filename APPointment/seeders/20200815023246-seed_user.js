@@ -13,8 +13,8 @@ module.exports = {
         'email': faker.internet.email(),
         'password': bcrypt.hashSync('123456', 10),
         'admin': false,
-        'createdat': moment(currentDate).format('YYYY-MM-DD hh:mm:ss'),
-        'updatedat':  moment(currentDate).format('YYYY-MM-DD hh:mm:ss')
+        'created_at': moment(currentDate).format('YYYY-MM-DD hh:mm:ss'),
+        'updated_at':  moment(currentDate).format('YYYY-MM-DD hh:mm:ss')
       },
       {
         'id': 2,
@@ -22,8 +22,8 @@ module.exports = {
         'email': faker.internet.email(),
         'password': bcrypt.hashSync('123456', 10),
         'admin': false,
-        'createdat': moment(currentDate).format('YYYY-MM-DD hh:mm:ss'),
-        'updatedat':  moment(currentDate).format('YYYY-MM-DD hh:mm:ss')
+        'created_at': moment(currentDate).format('YYYY-MM-DD hh:mm:ss'),
+        'updated_at':  moment(currentDate).format('YYYY-MM-DD hh:mm:ss')
       },
       {
         'id': 3,
@@ -31,8 +31,8 @@ module.exports = {
         'email': faker.internet.email(),
         'password': bcrypt.hashSync('123456', 10),
         'admin': false,
-        'createdat': moment(currentDate).format('YYYY-MM-DD hh:mm:ss'),
-        'updatedat':  moment(currentDate).format('YYYY-MM-DD hh:mm:ss')
+        'created_at': moment(currentDate).format('YYYY-MM-DD hh:mm:ss'),
+        'updated_at':  moment(currentDate).format('YYYY-MM-DD hh:mm:ss')
       },
       {
         'id': 4,
@@ -40,8 +40,8 @@ module.exports = {
         'email': faker.internet.email(),
         'password': bcrypt.hashSync('123456', 10),
         'admin': false,
-        'createdat': moment(currentDate).format('YYYY-MM-DD hh:mm:ss'),
-        'updatedat':  moment(currentDate).format('YYYY-MM-DD hh:mm:ss')
+        'created_at': moment(currentDate).format('YYYY-MM-DD hh:mm:ss'),
+        'updated_at':  moment(currentDate).format('YYYY-MM-DD hh:mm:ss')
       },
       {
         'id': 5,
@@ -49,8 +49,8 @@ module.exports = {
         'email': 'admin@admin.com',
         'password': bcrypt.hashSync('admin', 10),
         'admin': true,
-        'createdat': moment(currentDate).format('YYYY-MM-DD hh:mm:ss'),
-        'updatedat':  moment(currentDate).format('YYYY-MM-DD hh:mm:ss')
+        'created_at': moment(currentDate).format('YYYY-MM-DD hh:mm:ss'),
+        'updated_at':  moment(currentDate).format('YYYY-MM-DD hh:mm:ss')
       }
     ], {});
   },

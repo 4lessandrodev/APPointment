@@ -31,15 +31,15 @@ module.exports = function(sequelize, DataTypes) {
       comment: "null"
     },
     createdAt: {
-      field: 'createdat',
-      type: DataTypes.DATE,
+      field: 'created_at',
+      type: DataTypes.TIMESTAMP,
       allowNull: false,
       defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
       comment: "null",
     },
     updatedAt: {
-      field: 'updatedat',
-      type: DataTypes.DATE,
+      field: 'updated_at',
+      type: DataTypes.TIMESTAMP,
       allowNull: false,
       defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
       comment: "null"

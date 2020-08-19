@@ -9,8 +9,8 @@ module.exports = {
       {
         'id': 1,
         'description': faker.random.word(),
-        'createdat':moment(currentDate).subtract(4, 'day').format('YYYY-MM-DD hh:mm:ss'),
-        'updatedat': moment(currentDate).subtract(1, 'day').format('YYYY-MM-DD hh:mm:ss'),
+        'created_at':moment(currentDate).subtract(4, 'day').format('YYYY-MM-DD hh:mm:ss'),
+        'updated_at': moment(currentDate).subtract(1, 'day').format('YYYY-MM-DD hh:mm:ss'),
         'manager': 5,
       }
     ], {});

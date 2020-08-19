@@ -10,20 +10,20 @@ module.exports = {
       {
         'teams_id': 1,
         'users_id': 1,
-        'createdat': moment(currentDate).subtract(1, 'day').format('YYYY-MM-DD hh:mm:ss'),
-        'updatedat': moment(currentDate).subtract(1, 'day').format('YYYY-MM-DD hh:mm:ss'),
+        'created_at': moment(currentDate).subtract(1, 'day').format('YYYY-MM-DD hh:mm:ss'),
+        'updated_at': moment(currentDate).subtract(1, 'day').format('YYYY-MM-DD hh:mm:ss'),
       },
       {
         'teams_id': 1,
         'users_id': 2,
-        'createdat': moment(currentDate).subtract(1, 'day').format('YYYY-MM-DD hh:mm:ss'),
-        'updatedat': moment(currentDate).subtract(1, 'day').format('YYYY-MM-DD hh:mm:ss'),
+        'created_at': moment(currentDate).subtract(1, 'day').format('YYYY-MM-DD hh:mm:ss'),
+        'updated_at': moment(currentDate).subtract(1, 'day').format('YYYY-MM-DD hh:mm:ss'),
       },
       {
         'teams_id': 1,
         'users_id': 3,
-        'createdat': moment(currentDate).subtract(1, 'day').format('YYYY-MM-DD hh:mm:ss'),
-        'updatedat': moment(currentDate).subtract(1, 'day').format('YYYY-MM-DD hh:mm:ss'),
+        'created_at': moment(currentDate).subtract(1, 'day').format('YYYY-MM-DD hh:mm:ss'),
+        'updated_at': moment(currentDate).subtract(1, 'day').format('YYYY-MM-DD hh:mm:ss'),
       }
     ], {});
   },

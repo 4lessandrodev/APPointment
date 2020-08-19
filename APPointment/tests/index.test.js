@@ -62,10 +62,21 @@ test('Deve pedir um email e uma senha para se cadastrar ', async () => {
 
 test('Deve pedir uma senha para se cadastrar ', async () => {
     const response = await request.post('/api/register')
-    .send({email:});
+        .send({ email: faker.internet.email() });
     const status = response.status;
     expect(status).toBe(422);
+    expect(response.body.erros[0].msg).toBe('Informe uma senha');
 });
+
+test('Deve pedir um email para se cadastrar ', async () => {
+    const response = await request.post('/api/register')
+        .send({ password: faker.internet.password() });
+    
+    const status = response.status;
+    expect(status).toBe(422);
+    expect(response.body.erros[0].msg).toBe('Informe um email válido');
+});
+
 
 
 

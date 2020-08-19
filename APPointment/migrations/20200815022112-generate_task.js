@@ -10,25 +10,25 @@ module.exports = {
         primaryKey: true,
         autoIncrement: true
       },
-      'startat': {
-        type: Sequelize.DATE,
+      'start_at': {
+        type: Sequelize.TIMESTAMP,
         allowNull: false,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
         comment: "null"
       },
-      'doneat': {
-        type: Sequelize.DATE,
+      'done_at': {
+        type: Sequelize.TIMESTAMP,
         allowNull: true,
         comment: "null"
       },
-      'createdat': {
-        type: Sequelize.DATE,
+      'created_at': {
+        type: Sequelize.TIMESTAMP,
         allowNull: false,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
         comment: "null"
       },
-      'updatedat': {
-        type: Sequelize.DATE,
+      'updated_at': {
+        type: Sequelize.TIMESTAMP,
         allowNull: false,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
         comment: "null"

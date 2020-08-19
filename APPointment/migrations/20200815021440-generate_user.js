@@ -31,13 +31,13 @@ module.exports = {
         defaultValue: false,
         comment: "null"
       },
-      'createdat': {
+      'created_at': {
         type: Sequelize.DATE,
         allowNull: false,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
         comment: "null"
       },
-      'updatedat': {
+      'updated_at': {
         type: Sequelize.DATE,
         allowNull: false,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),

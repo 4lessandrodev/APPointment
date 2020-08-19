@@ -15,14 +15,14 @@ module.exports = {
         allowNull: false,
         comment: "null"
       },
-      'createdat': {
-        type: Sequelize.DATE,
+      'created_at': {
+        type: Sequelize.TIMESTAMP,
         allowNull: false,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
         comment: "null"
       },
-      'updatedat': {
-        type: Sequelize.DATE,
+      'updated_at': {
+        type: Sequelize.TIMESTAMP,
         allowNull: false,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
         comment: "null"

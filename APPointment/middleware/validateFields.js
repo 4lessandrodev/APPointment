@@ -22,7 +22,7 @@ module.exports = {
     validateTask: () => {
         return (
             [
-                check('startat', 'Informe uma data de início').isDate(),
+                check('start_at', 'Informe uma data de início').isISO8601(),
                 check('description', 'Informe um nome para o time de até 80 caracter').isLength({ min: 1, max: 120 }),
                 check('email', 'Email deve ser menor que 80 caracter').isLength({ max: 80 })
             ]

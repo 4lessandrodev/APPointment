@@ -2,6 +2,7 @@ const { Task, User, Team } = require('../models');
 const { validationResult } = require('express-validator');
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
+const moment = require('moment');
 
 module.exports = {
     
@@ -72,9 +73,10 @@ module.exports = {
                 return res.status(422).json({ errors: errors.array() });
             }
 
-            const { startat, description } = req.body;
+            const { start_at, description } = req.body;
             const { user_id } = req.user;
-            const result = await Task.create({ startat, description, users_id: user_id });
+            let formatedDate = moment(start_at).format('YYYY-MM-DD hh:mm:ss');
+            const result = await Task.create({ start_at:formatedDate, description, users_id: user_id });
             return res.status(200).json({ result });
         } catch (error) {
             console.error(error.message);
@@ -90,11 +92,11 @@ module.exports = {
                 return res.status(422).json({ errors: errors.array() });
             }
 
-            const { startat, description, done, doneat } = req.body;
+            const { start_at, description, done, done_at } = req.body;
             const { id } = req.params;
             const { user_id } = req.user;
-            
-            const task = await findByPk(id);
+
+            const task = await Task.findByPk(id);
             if (!task) {
                 return res.status(422).json({ error:`Não foi encontrada a tarefa para o id: ${id}` });  
             }
@@ -102,11 +104,11 @@ module.exports = {
             if (task.users_id != user_id) {
                 return res.status(422).json({ error:`Você não tem autorização para alterar esta tarefa` }); 
             }
-            
+            let formatedDate = moment(start_at).format('YYYY-MM-DD hh:mm:ss');
             task.description = description;
-            task.startat = startat;
+            task.start_at = formatedDate;
             task.done = done;
-            task.doneat = doneat;
+            task.done_at = done_at;
             const result = await task.save();
             
             return res.status(200).json({ result });
