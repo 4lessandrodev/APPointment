@@ -19,12 +19,24 @@ module.exports = {
         );
     },
             
-    validateTask: () => {
+    validateNewTask: () => {
         return (
             [
                 check('start_at', 'Informe uma data de início').isISO8601(),
                 check('description', 'Informe um nome para o time de até 80 caracter').isLength({ min: 1, max: 120 }),
                 check('email', 'Email deve ser menor que 80 caracter').isLength({ max: 80 })
+            ]
+        );
+    },
+
+    validateUpdateTask: () => {
+        return (
+            [
+                check('start_at', 'Informe uma data de início').isISO8601(),
+                check('description', 'Informe um nome para o time de até 80 caracter').isLength({ min: 1, max: 120 }),
+                check('email', 'Email deve ser menor que 80 caracter').isLength({ max: 80 }),
+                check('done', 'Informe se a tarefa foi concluída').isBoolean(),
+                check('done_at', 'informe a data atual como horario de conclusão').isISO8601(),
             ]
         );
     },

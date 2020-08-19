@@ -130,7 +130,7 @@ module.exports = {
             const { id } = req.params;
             const { user_id } = req.user;
             
-            const task = await findByPk(id);
+            const task = await Task.findByPk(id);
             if (!task) {
                 return res.status(422).json({ error:`Não foi encontrada a tarefa para o id: ${id}` });  
             }

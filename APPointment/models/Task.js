@@ -53,7 +53,8 @@ module.exports = function(sequelize, DataTypes) {
       references: {
         model: 'User',
         key: 'id'
-      }
+      },
+      
     }
   }, {
     tableName: 'tasks'
