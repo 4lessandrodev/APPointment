@@ -86,11 +86,11 @@ module.exports = {
     show: async (req, res) => {
         try {
 
-            const { email = '', id = '' } = req.query;
+            const { email = '', id = '', name = '' } = req.query;
             if (email !== '') {
 
                 const user = await User.findOne({
-                    where:{email}
+                    where:{email:{[Op.like]:`%${email}%`}}
                 });
                 res.status(200).json({ user });
 
@@ -99,9 +99,16 @@ module.exports = {
                 const users = await User.findByPk(id);
                 res.status(200).json({ users });
 
+            }else if(name !== ''){
+
+                 const user = await User.findOne({
+                    where:{name:{[Op.like]:`%${name}%`}}
+                });
+                res.status(200).json({ user });
+
             } else {
 
-                res.status(200).json({ error: 'Informe um email' });  
+                res.status(200).json({ error: 'Informe um email, name ou id' });  
                 
             }
         } catch (error) {
