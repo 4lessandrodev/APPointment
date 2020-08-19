@@ -1,4 +1,5 @@
 const { Team_has_users, Team, User } = require('../models');
+const { validationResult } = require('express-validator');
 
 
 module.exports = {
@@ -12,8 +13,9 @@ module.exports = {
             }
             
             const { user } = req;
+            const {teams_id, users_id } = req.body;
 
-            const teamAvaliable = await Team.findOne({ where: { teams_id, manager: user.user_id } });
+            const teamAvaliable = await Team.findOne({ where: { id:teams_id, manager: user.user_id } });
             
             if (!teamAvaliable) {
                 return res.status(422).json({ error:'Você não tem autorização para remover este usuário' });
@@ -23,6 +25,14 @@ module.exports = {
 
             if (!teamAvaliable || !userAvaliable) {
                 return res.status(422).json({ error:'Usuário ou time não disponível' });
+            }
+
+            const userAlreadyInTeam = await Team_has_users.findOne({
+                attributes:['teams_id', 'users_id'],
+                where: { teams_id, users_id }
+            });
+            if (userAlreadyInTeam) {
+                return res.status(422).json({ error:'O Usuário informado já está neste time' });
             }
 
             const result = await Team_has_users.create({ teams_id, users_id });
@@ -43,8 +53,9 @@ module.exports = {
             }
             
             const { user } = req;
+            const {teams_id, users_id } = req.body;
 
-            const teamAvaliable = await Team.findOne({ where: { teams_id, manager: user.user_id } });
+            const teamAvaliable = await Team.findOne({ where: { id:teams_id, manager: user.user_id } });
             
             if (!teamAvaliable) {
                 return res.status(422).json({ error:'Você não tem autorização para remover este usuário' });
