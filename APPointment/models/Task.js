@@ -10,27 +10,27 @@ module.exports = function(sequelize, DataTypes) {
       autoIncrement: true
     },
     'start_at': {
-      type: DataTypes.TIMESTAMP,
+      type: DataTypes.DATE,
       allowNull: false,
       defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
       comment: "null"
     },
     'done_at': {
-      type: DataTypes.TIMESTAMP,
+      type: DataTypes.DATE,
       allowNull: false,
       defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
       comment: "null"
     },
     createdAt: {
       field: 'created_at',
-      type: DataTypes.TIMESTAMP,
+      type: DataTypes.DATE,
       allowNull: false,
       defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
       comment: "null",
     },
     updatedAt: {
       field: 'updated_at',
-      type: DataTypes.TIMESTAMP,
+      type: DataTypes.DATE,
       allowNull: false,
       defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
       comment: "null"

@@ -16,13 +16,13 @@ module.exports = {
         comment: "null"
       },
       'created_at': {
-        type: Sequelize.TIMESTAMP,
+        type: Sequelize.DATE,
         allowNull: false,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
         comment: "null"
       },
       'updated_at': {
-        type: Sequelize.TIMESTAMP,
+        type: Sequelize.DATE,
         allowNull: false,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
         comment: "null"
