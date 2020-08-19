@@ -47,6 +47,15 @@ module.exports = {
                 param('id', 'Informe um id numérico').isNumeric()
             ]
         );
+    },
+
+    validateMember: () => {
+        return (
+            [
+                check('teams_id', 'Informe um id numérico do time').isNumeric(),
+                check('users_id', 'Informe um id numérico do usuário').isNumeric()
+            ]
+        );
     }
                 
 };

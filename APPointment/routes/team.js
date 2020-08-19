@@ -1,16 +1,21 @@
 const express = require('express');
 const router = express.Router();
-const controller = require('../controller/team');
-const { validateTeam, validateParam } = require('../middleware/validateFields');
+const teamController = require('../controller/team');
+const memberController = require('../controller/team_has_users');
+const { validateTeam, validateParam, validateMember } = require('../middleware/validateFields');
 
-router.get('/', controller.index);
+router.get('/', teamController.index);
 
-router.get('/:id', validateParam(), controller.show);
+router.get('/:id', validateParam(), teamController.show);
 
-router.post('/', validateTeam(), controller.store);
+router.post('/', validateTeam(), teamController.store);
 
-router.delete('/:id', validateParam(), controller.delete);
+router.delete('/:id', validateParam(), teamController.delete);
 
-router.put('/:id', validateParam(), validateTeam(), controller.update);
+router.put('/:id', validateParam(), validateTeam(), teamController.update);
+
+router.post('/members', validateMember(), memberController.store);
+
+router.delete('/members', validateMember(), memberController.delete);
 
 module.exports = router;
