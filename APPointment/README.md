@@ -13,7 +13,7 @@
 - Sequelize
 - Express Validator
 
-##### Testes realizados via :smiley
+##### Testes realizados via
 
 1. Jest
 2. Postman
@@ -22,13 +22,15 @@
 ###### Requisitos 
 
 > sequelize cli, 
+
 > banco de dados PostgresSQL
+
 > Postman para acessar as rotas 
 
 - `git clone https://github.com/ALESSANDROLMENEZES/APPointment.git`
 - `cd APPointment`
-- `Crie um arquivo . env `
-- `Configure o arquivo .env com seu usário e senha de conexão do banco de dados`
+- `Crie um arquivo .env `
+- `Configure o arquivo .env com seu usuário e senha de conexão do banco de dados`
 - `npx sequelize db:create`
 - `npx sequelize db:migrate`
 - `npx sequelize db:seed:all`
