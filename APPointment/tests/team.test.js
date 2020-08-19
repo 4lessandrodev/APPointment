@@ -22,8 +22,8 @@ describe('Grupo de teste de times, rota autenticada', () => {
     test('Listar todos os membros do time do usuário conectado ', async () => {
         const response = await request.get('/api/teams?limit=10')
          .set('authorization', `Bearer ${TOKEN}`);
-        let { users } = response.body;
-        expect(users[0].id).toBe(1);
+        let status = response.status;
+        expect(status).toBe(200);
     });
     
 });

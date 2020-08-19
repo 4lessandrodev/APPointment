@@ -34,23 +34,23 @@ describe('Grupo de teste de usuários, rota autenticada', () => {
     });
 
     test('Deve buscar o usuário pelo id ', async() => {
-        const response = await request.get('/users/search?id=1')
+        const response = await request.get('/api/users/search?id=1')
         .set('authorization', `Bearer ${TOKEN}`);
         let status = response.status;
         expect(status).toBe(200);
     });
 
     test('Deve buscar o usuário pelo nome ', async() => {
-        const response = await request.get('/users/search?name=John')
+        const response = await request.get('/api/users/search?name=John')
         .set('authorization', `Bearer ${TOKEN}`);
        let status = response.status;
        expect(status).toBe(200);
     });
 
     test('Deve buscar o usuário pelo email ', async() => {
-        const response = await request.get('/users/search?email=admin@admin')
+        const response = await request.get('/api/users/search?email=admin@admin')
         .set('authorization', `Bearer ${TOKEN}`);
-       let user = response.body;
+        let { user } = response.body;
        expect(user.email).toBe('admin@admin.com');
     });
 
