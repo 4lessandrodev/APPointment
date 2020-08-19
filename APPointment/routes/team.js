@@ -16,6 +16,6 @@ router.put('/:id', validateParam(), validateTeam(), teamController.update);
 
 router.post('/members', validateMember(), memberController.store);
 
-router.delete('/members', validateMember(), memberController.delete);
+router.delete('/members/remove', validateMember(), memberController.delete);
 
 module.exports = router;

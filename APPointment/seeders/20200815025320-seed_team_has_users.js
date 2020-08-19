@@ -8,18 +8,21 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.bulkInsert('team_has_users', [
       {
+        'id':1,
         'teams_id': 1,
         'users_id': 1,
         'created_at': moment(currentDate).subtract(1, 'day').format('YYYY-MM-DD hh:mm:ss'),
         'updated_at': moment(currentDate).subtract(1, 'day').format('YYYY-MM-DD hh:mm:ss'),
       },
       {
+        'id':2,
         'teams_id': 1,
         'users_id': 2,
         'created_at': moment(currentDate).subtract(1, 'day').format('YYYY-MM-DD hh:mm:ss'),
         'updated_at': moment(currentDate).subtract(1, 'day').format('YYYY-MM-DD hh:mm:ss'),
       },
       {
+        'id':3,
         'teams_id': 1,
         'users_id': 3,
         'created_at': moment(currentDate).subtract(1, 'day').format('YYYY-MM-DD hh:mm:ss'),
