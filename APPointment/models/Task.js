@@ -54,7 +54,8 @@ module.exports = function(sequelize, DataTypes) {
         model: 'User',
         key: 'id'
       },
-      
+      onUpdate: 'CASCADE',
+      onDelete: 'CASCADE',
     }
   }, {
     tableName: 'tasks'

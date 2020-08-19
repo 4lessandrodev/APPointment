@@ -35,7 +35,9 @@ module.exports = function(sequelize, DataTypes) {
       references: {
         model: 'User',
         key: 'id'
-      }
+      },
+      onUpdate: 'CASCADE',
+      onDelete: 'CASCADE',
     }
   }, {
     tableName: 'teams'
