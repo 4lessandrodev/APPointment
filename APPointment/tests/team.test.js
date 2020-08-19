@@ -17,10 +17,10 @@ beforeAll(async () => {
 afterAll(async () => await User.sequelize.close());
 
 
-describe('Grupo de teste de usuários, rota autenticada', () => {
+describe('Grupo de teste de times, rota autenticada', () => {
     
-    test('Listar usuários e o primeiro deve ter id 1 ', async () => {
-        const response = await request.get('/api/users')
+    test('Listar todos os membros do time do usuário conectado ', async () => {
+        const response = await request.get('/api/teams')
          .set('authorization', `Bearer ${TOKEN}`);
         let { users } = response.body;
         expect(users[0].id).toBe(1);

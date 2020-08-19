@@ -10,7 +10,9 @@ module.exports = {
         try {
             let tasks;
             const { user } = req;
-            
+            let { limit = 7, page = 1 } = req.query;
+            limit = parseInt(limit);
+            page = parseInt(page) - 1;
             
             if (user.admin) {
                 const teams = await User.findAll({
@@ -24,7 +26,6 @@ module.exports = {
                             }
                         }
                     ],
-                    
                 });
                 
                 const usersIds = teams.map(user => user.id);
@@ -39,7 +40,9 @@ module.exports = {
                     ],
                     where: {
                         users_id:{[Op.in]:usersIds}
-                    }
+                    },
+                    limit,
+                    offset:limit*page
                 });
                 
             } else {
@@ -53,7 +56,9 @@ module.exports = {
                     ],
                     where: {
                         users_id: user.user_id
-                    }
+                    },
+                    limit,
+                    offset:limit*page
                 });
             }
             

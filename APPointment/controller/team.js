@@ -6,6 +6,9 @@ module.exports = {
     index: async (req, res) => {
         try {
             const { user } = req;
+            let { limit = 7, page = 1 } = req.query;
+            limit = parseInt(limit);
+            page = parseInt(page) - 1;
             let teams;
             if (user.admin) {
                 teams = await Team.findAll(
@@ -19,7 +22,9 @@ module.exports = {
                         ],
                         where: {
                            manager:user.user_id 
-                        }
+                        },
+                        limit,
+                        offset:limit*page
                     }
                 );                
             } else {
@@ -34,7 +39,9 @@ module.exports = {
                                     id:user.user_id 
                                  }
                             }
-                        ]
+                        ],
+                        limit,
+                        offset:limit*page
                     }
                 );
             }
