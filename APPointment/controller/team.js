@@ -1,4 +1,5 @@
 const { Team, User } = require('../models');
+const { validationResult } = require('express-validator');
 
 module.exports = {
 
@@ -78,6 +79,8 @@ module.exports = {
                 return res.status(422).json({ errors: errors.array() });
             }
 
+            const { user } = req;
+
             const { description } = req.body;
             const { id } = req.params;
             const team = await Team.findOne({
@@ -107,6 +110,8 @@ module.exports = {
                 return res.status(422).json({ errors: errors.array() });
             }
 
+            const { user } = req;
+
             const { id } = req.params;
             const team = await Team.findOne({
                 where: {
@@ -132,6 +137,8 @@ module.exports = {
             if (!errors.isEmpty()) {
                 return res.status(422).json({ errors: errors.array() });
             }
+
+            const { user } = req;
 
             let team;
             const { id } = req.params;
