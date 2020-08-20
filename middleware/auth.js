@@ -1,7 +1,7 @@
 const { User } = require('../models');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
-const { SECRET_KEY } = process.env;
+const { SECRET_KEY } = process.env || 'SDFIO2392SC30';
 
 module.exports = {
     
