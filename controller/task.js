@@ -8,7 +8,7 @@ module.exports = {
     
     index: async (req, res) => {
         try {
-            let tasks;
+            let result;
             const { user } = req;
             let { limit = 7, page = 1 } = req.query;
             limit = parseInt(limit);
@@ -30,7 +30,7 @@ module.exports = {
                 
                 const usersIds = teams.map(user => user.id);
                 
-                tasks = await Task.findAll({
+                const {count:size, rows:tasks} = await Task.findAndCountAll({
                     include: [
                         {
                             model: User,
@@ -44,9 +44,11 @@ module.exports = {
                     limit,
                     offset:limit*page
                 });
-                
+
+                result = {size, tasks};
+
             } else {
-                tasks = await Task.findAll({
+                let {count:size, rows:tasks} = await Task.findAndCountAll({
                     include: [
                         {
                             model: User,
@@ -60,9 +62,12 @@ module.exports = {
                     limit,
                     offset:limit*page
                 });
+
+                result = {size, tasks};
+
             }
             
-            return res.status(200).json({ tasks });
+            return res.status(200).json(result);
             
         } catch (error) {
           console.error(error.message);

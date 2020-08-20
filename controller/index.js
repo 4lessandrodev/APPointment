@@ -10,12 +10,12 @@ module.exports = {
             let { limit = 7, page = 1 } = req.query;
             limit = parseInt(limit);
             page = parseInt(page) - 1;
-            const users = await User.findAll({
+            const {count:size, rows:users} = await User.findAndCountAll({
                 attributes: ['name'],
-                limt,
+                limit,
                 offset:limit*page
             });
-            res.status(200).json({ users });   
+            res.status(200).json({ size, users });   
         } catch (error) {
            console.error(error.message);
             return res.status(501).json({ error:error.message });
