@@ -9,9 +9,9 @@ module.exports = {
             let { limit = 7, page = 1 } = req.query;
             limit = parseInt(limit);
             page = parseInt(page) - 1;
-            let teams;
+            let result;
             if (user.admin) {
-                teams = await Team.findAll(
+                let {count:size, rows:teams} = await Team.findAndCountAll(
                     {
                         include: [
                             {
@@ -26,9 +26,12 @@ module.exports = {
                         limit,
                         offset:limit*page
                     }
-                );                
+                ); 
+
+                result = {size, count};
+
             } else {
-                teams = await Team.findAll(
+                let {count:size, rows:teams} = await Team.findAndCountAll(
                     {
                         include: [
                             {
@@ -44,9 +47,12 @@ module.exports = {
                         offset:limit*page
                     }
                 );
+
+                result = {size, count};
+
             }
 
-            return res.status(200).json({ teams });
+            return res.status(200).json(result);
 
         } catch (error) {
             console.error(error.message);
