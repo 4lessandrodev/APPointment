@@ -27,7 +27,9 @@
 ###### Requisitos
 
 > sequelize cli,
+
 > banco de dados PostgresSQL
+
 > Postman para acessar as rotas
 
 - `git clone https://github.com/ALESSANDROLMENEZES/APPointment.git`
